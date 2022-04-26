@@ -1,3 +1,5 @@
+import { DocumentFragment } from 'parse5';
+
 /**
  * Defines all the options for html2pug.
  */
@@ -11,6 +13,7 @@ export interface Options {
   preserveLineBreaks: boolean;
   removeEmptyAttributes: boolean;
   tabs: boolean;
+  beforeSerialize?(doc: DocumentFragment): DocumentFragment;
 }
 
 // Default options for html2pug.

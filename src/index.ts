@@ -24,7 +24,10 @@ export default (sourceHtml: string, options?: Options) => {
   } = opts;
 
   // Parse HTML and convert to Pug
-  const doc = fragment ? parseFragment(html) : parse(html);
+  let doc = fragment ? parseFragment(html) : parse(html);
+  if (opts.beforeSerialize) {
+    doc = opts.beforeSerialize(doc)
+  }
   const pugify = new Pugify(doc as DefaultTreeDocument, opts);
   return pugify.parse();
 };
